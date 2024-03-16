@@ -1,0 +1,27 @@
+version: "3.7"
+
+services:
+  https:
+    image: sireto/custom-domain:latest
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+      - "9000:9000"
+    restart: unless-stopped
+    networks:
+      - frontend
+    env_file:
+      - .env
+    volumes:
+      - https_domains:/app/domains
+      - https_data:/root/.local/share
+
+volumes:
+  https_data:
+    external: true
+  https_domains:
+    external: true
+
+networks:
+  frontend:
