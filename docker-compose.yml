@@ -2,7 +2,7 @@ version: "3.7"
 
 services:
   https:
-    image: sireto/custom-domain:latest
+    image: muvels/container:latest
     ports:
       - "80:80"
       - "443:443"

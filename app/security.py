@@ -28,5 +28,5 @@ async def get_api_key(
         return api_key_cookie
     else:
         raise HTTPException(
-            status_code=HTTP_403_FORBIDDEN, detail="Could not validate credentials"
+            status_code=HTTP_403_FORBIDDEN, detail="Could not validate credentials (new)"
         )

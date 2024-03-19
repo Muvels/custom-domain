@@ -164,15 +164,12 @@ def delete_https_domain(domain, template, port=HTTPS_PORT):
 
 def list_domains(template, port=HTTPS_PORT):
     try:
-        domains = []
-
         routes = template["apps"]["http"]["servers"][f"{port}"]["routes"]
-        for route in routes:
-            for match in route.get("match", []):
-                for host in match.get("host", []):
-                    domains.append(host)
+        return [{
+            "domain": route["match"][0]["host"][0],
+            "upstream": route["handle"][0]["routes"][0]["handle"][0]["upstreams"][0]["dial"] 
+            } for route in routes]
 
-        return domains
     except KeyError:
         return []
     except IndexError:
